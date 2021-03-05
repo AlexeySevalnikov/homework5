@@ -18,7 +18,6 @@ class Reader extends Library {
             }
             n[i-2]++;
         }
-        final int i = massBook[0].length() + massBook[1].length() - n[0] + n[1];
-        return i;
+        return ((massBook[0].length() + massBook[1].length()) - n[0]) + n[1];
     }
 }
