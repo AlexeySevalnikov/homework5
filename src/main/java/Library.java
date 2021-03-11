@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class Library {
     public static void main(String[] args) {
         String[][] massBook = {{"Crime and Punishment", "F.M.Dostoevsky", "208", "497"},
@@ -13,18 +11,8 @@ public class Library {
                 {"A Hero of Our Time", "M.Yu.Lermontov", "", "300"},
                 {"Anna Karenina", "Leo Tolstoy", "", ""}};
         Reader reader = new Reader();
-        String[] bookTrue = reader.choiceBook(massBook);
-        if (bookTrue[2].equals("") && bookTrue[3].equals("")) {
-            Book book = new Book(bookTrue[0], bookTrue[1]);
-            System.out.println(book.toString());
-        } else if (bookTrue[2].equals("")) {
-            Book book = new Book(bookTrue[0], bookTrue[1], bookTrue[3]);
-            System.out.println(book.toString());
-        } else {
-            Book book = new Book(bookTrue[0], bookTrue[1], bookTrue[2], bookTrue[3]);
-            System.out.println(book.toString());
-        }
-        int app = reader.appraisal(bookTrue);
-        System.out.println("Оценка: " + app);
+        Book book = reader.choiceBook(massBook);
+        reader.readBook(book);
+        System.out.println("Книга: '" + book.name + "'; Оценка: " + reader.appraisal(book));
     }
 }

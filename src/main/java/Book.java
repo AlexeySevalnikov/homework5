@@ -1,4 +1,4 @@
-class Book extends Library {
+class Book {
 
     String name;
     String author;
@@ -16,21 +16,18 @@ class Book extends Library {
         this.name = name;
         this.author = author;
         this.numberPages = numberPages;
+        this.numberSeries = "Неизвестно";
     }
 
     Book(String name, String author) {
         this.name = name;
         this.author = author;
+        this.numberSeries = "Неизвестно";
+        this.numberPages = "Неизвестно";
     }
 
     @Override
     public String toString() {
-        if (numberSeries == null) {
-            numberSeries = "Неизвестно";
-        }
-        if (numberPages == null){
-            numberPages ="Неизвестно";
-        }
-        return "Книга:" + '"' + name + '"' + ' ' + author + "; Номер серии: " + numberSeries + "; Количесво страниц: " + numberPages;
+        return "Книга: '"  + name + "' " + author + "; Номер серии: " + numberSeries + "; Количесво страниц: " + numberPages;
     }
 }

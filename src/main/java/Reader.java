@@ -1,23 +1,32 @@
 import java.util.Random;
 
-class Reader extends Library {
+class Reader{
 
-    public String[] choiceBook(String[][] massBook) {
+    public Book choiceBook(String[][] massBook) {
         Random random = new Random();
         int index = random.nextInt(massBook.length);
-        return massBook[index];
+        String[] bookTrue = massBook[index];
+        if (bookTrue[2].equals("") && bookTrue[3].equals("")) {
+            return new Book(bookTrue[0], bookTrue[1]);
+        } else if (bookTrue[2].equals("")) {
+            return new Book(bookTrue[0], bookTrue[1], bookTrue[3]);
+        } else {
+            return new Book(bookTrue[0], bookTrue[1], bookTrue[2], bookTrue[3]);
+        }
     }
 
-    public int appraisal(String[] massBook) {
-        int[] n = new int[massBook.length / 2];
-        for (int i = 2; i < massBook.length; i++) {
-            if (massBook[i].equals("")) {
-                n[i-2] = new Random().nextInt(500);
-            } else {
-                n[i-2] = Integer.parseInt(massBook[i]);
-            }
-            n[i-2]++;
+    public void readBook(Book book) {
+        System.out.println(book.toString());
+    }
+
+    public int appraisal(Book bookTrue) {
+        int n = new Random().nextInt(100);
+        if (bookTrue.numberPages.equals("Неизвестно") && bookTrue.numberSeries.equals("Неизвестно")) {
+            return (bookTrue.name.length() + bookTrue.author.length() - n - n);
+        } else if (bookTrue.numberSeries.equals("Неизвестно")) {
+            return (bookTrue.name.length() + bookTrue.author.length() - n + Integer.parseInt(bookTrue.numberPages));
+        } else {
+            return (bookTrue.name.length() + bookTrue.author.length() - Integer.parseInt(bookTrue.numberSeries) + Integer.parseInt(bookTrue.numberPages));
         }
-        return ((massBook[0].length() + massBook[1].length()) - n[0]) + n[1];
     }
 }
